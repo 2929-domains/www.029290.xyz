@@ -6,53 +6,53 @@
   <title>Under Construction</title>
   <style>
     /* Google Font */
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
     /* Reset & body styles */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body, html {
       height: 100%;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Inter', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      background: #0f111a;
       overflow: hidden;
     }
 
     /* Glassmorphic container */
     .glass-card {
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 20px;
       padding: 50px;
       width: 90%;
       max-width: 500px;
       text-align: center;
       backdrop-filter: blur(15px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      animation: fadeIn 2s ease-in-out;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      animation: fadeIn 1.5s ease-in-out;
     }
 
     h1 {
       font-size: 2.5rem;
-      color: #fff;
-      margin-bottom: 10px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      color: #ffffff;
+      margin-bottom: 15px;
     }
 
     p {
-      color: #f0f0f0;
-      font-size: 1.2rem;
+      color: #c0c0c0;
+      font-size: 1.1rem;
       margin-bottom: 30px;
     }
 
-    /* Animated construction icon */
+    /* Professional icon (SVG) */
     .construction-icon {
-      font-size: 60px;
-      color: #fff;
-      margin-bottom: 20px;
-      animation: bounce 2s infinite;
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      fill: #ffffff;
+      animation: pulse 2s infinite;
     }
 
     /* Button */
@@ -60,8 +60,8 @@
       padding: 12px 30px;
       border: none;
       border-radius: 50px;
-      background: rgba(255,255,255,0.25);
-      color: #fff;
+      background: rgba(255,255,255,0.1);
+      color: #ffffff;
       font-size: 1rem;
       cursor: pointer;
       transition: 0.3s;
@@ -69,19 +69,19 @@
     }
 
     .notify-btn:hover {
-      background: rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.2);
       transform: scale(1.05);
     }
 
     /* Animations */
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-
     @keyframes fadeIn {
       0% { opacity: 0; transform: translateY(-20px);}
       100% { opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
     }
 
     /* Responsive text */
@@ -93,10 +93,15 @@
 </head>
 <body>
   <div class="glass-card">
-    <div class="construction-icon">🚧</div>
-    <h1>We're Under Construction</h1>
-    <p>Our website is getting a new look. Stay tuned!</p>
-    <button class="notify-btn">Notify Me</button>
+    <!-- Professional construction SVG icon -->
+    <svg class="construction-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+      <path d="M32 2L2 62h60L32 2zM32 12l22 44H10L32 12z"/>
+      <path d="M28 30h8v12h-8zM28 46h8v4h-8z"/>
+    </svg>
+
+    <h1>Under Construction</h1>
+    <p>Our website is being upgraded. We’ll be live soon.</p>
+  
   </div>
 </body>
-  </html>
+</html>
