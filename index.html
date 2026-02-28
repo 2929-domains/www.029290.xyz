@@ -1,107 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Under Construction</title>
-  <style>
-    /* Google Font */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon | Under Construction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    /* Reset & body styles */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html {
-      height: 100%;
-      font-family: 'Inter', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #0f111a;
-      overflow: hidden;
-    }
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Vibrant background to make the glass effect visible */
+            background: linear-gradient(45deg, #6e8efb, #a777e3, #ff8c7f);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow: hidden;
+        }
 
-    /* Glassmorphic container */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 50px;
-      width: 90%;
-      max-width: 500px;
-      text-align: center;
-      backdrop-filter: blur(15px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      animation: fadeIn 1.5s ease-in-out;
-    }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    h1 {
-      font-size: 2.5rem;
-      color: #ffffff;
-      margin-bottom: 15px;
-    }
+        /* The Glass Container */
+        .glass-card {
+            width: 90%;
+            max-width: 500px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.15); /* Transparency */
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Depth */
+            backdrop-filter: blur(12px); /* The "Frosted" effect */
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
 
-    p {
-      color: #c0c0c0;
-      font-size: 1.1rem;
-      margin-bottom: 30px;
-    }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
 
-    /* Professional icon (SVG) */
-    .construction-icon {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 20px;
-      fill: #ffffff;
-      animation: pulse 2s infinite;
-    }
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
 
-    /* Button */
-    .notify-btn {
-      padding: 12px 30px;
-      border: none;
-      border-radius: 50px;
-      background: rgba(255,255,255,0.1);
-      color: #ffffff;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-      backdrop-filter: blur(10px);
-    }
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            margin: 0 auto 20px;
+            animation: spin 1s ease-in-out infinite;
+        }
 
-    .notify-btn:hover {
-      background: rgba(255,255,255,0.2);
-      transform: scale(1.05);
-    }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
 
-    /* Animations */
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(-20px);}
-      100% { opacity: 1; transform: translateY(0);}
-    }
+        .email-box {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
+        input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+        }
 
-    /* Responsive text */
-    @media(max-width: 500px){
-      h1 { font-size: 2rem; }
-      p { font-size: 1rem; }
-    }
-  </style>
+        input::placeholder { color: rgba(255, 255, 255, 0.7); }
+
+        button {
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: none;
+            background: #fff;
+            color: #7d77e3;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Decorative Background Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(30px);
+            z-index: 0;
+        }
+        .orb-1 { width: 300px; height: 300px; background: #ffefba; top: 10%; left: 15%; opacity: 0.4; }
+        .orb-2 { width: 200px; height: 200px; background: #8e2de2; bottom: 10%; right: 15%; opacity: 0.4; }
+
+    </style>
 </head>
 <body>
-  <div class="glass-card">
-    <!-- Professional construction SVG icon -->
-    <svg class="construction-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-      <path d="M32 2L2 62h60L32 2zM32 12l22 44H10L32 12z"/>
-      <path d="M28 30h8v12h-8zM28 46h8v4h-8z"/>
-    </svg>
 
-    <h1>Under Construction</h1>
-    <p>Our website is being upgraded. We’ll be live soon.</p>
-  
-  </div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="glass-card">
+        <div class="loader"></div>
+        <h1>Coming Soon</h1>
+        <p>Our website is under construction. We're working hard to give you the best experience!</p>
+      
+        </div>
+    </div>
+
 </body>
 </html>
