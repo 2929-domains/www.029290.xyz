@@ -3,172 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Construction | Catppuccin Mocha</title>
+    <title>2929 Domains | Availability Checker</title>
     <style>
-        /* Catppuccin Mocha Palette */
         :root {
-            --rosewater: #f5e0dc;
-            --flamingo: #f2cdcd;
-            --pink: #f5c2e7;
-            --mauve: #cba6f7;
-            --red: #f38ba8;
-            --maroon: #eba0ac;
-            --peach: #fab387;
-            --yellow: #f9e2af;
-            --green: #a6e3a1;
-            --teal: #94e2d5;
-            --sky: #89dceb;
-            --sapphire: #74c7ec;
-            --blue: #89b4fa;
-            --lavender: #b4befe;
-            --text: #cdd6f4;
-            --subtext1: #bac2de;
-            --subtext0: #a6adc8;
-            --overlay2: #9399b2;
-            --surface2: #585b70;
-            --surface0: #313244;
-            --base: #1e1e2e;
-            --mantle: #181825;
-            --crust: #11111b;
+            --mauve: #cba6f7; --blue: #89b4fa; --lavender: #b4befe;
+            --text: #cdd6f4; --subtext0: #a6adc8; --surface0: #313244;
+            --surface1: #45475a; --base: #1e1e2e; --mantle: #181825;
+            --crust: #11111b; --green: #a6e3a1; --red: #f38ba8; --peach: #fab387;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background-color: var(--base);
-            color: var(--text);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
+            background-color: var(--base); color: var(--text);
+            font-family: 'Inter', -apple-system, sans-serif;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; padding: 20px;
         }
 
-        .card {
-            background-color: var(--mantle);
-            padding: 3rem;
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            max-width: 500px;
-            width: 90%;
-            border: 1px solid var(--surface0);
-            animation: slideUp 0.8s ease-out;
+        .container {
+            background-color: var(--mantle); padding: 2.5rem; border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4); max-width: 550px;
+            width: 100%; border: 1px solid var(--surface0); text-align: center;
         }
 
-        .status-badge {
-            display: inline-block;
-            background-color: var(--surface0);
-            color: var(--mauve);
-            padding: 6px 16px;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--mauve);
-        }
+        h1 { color: var(--lavender); font-size: 2.2rem; margin-bottom: 0.5rem; }
+        .tagline { color: var(--subtext0); margin-bottom: 1.5rem; font-size: 0.9rem; }
 
-        h1 {
-            color: var(--lavender);
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            letter-spacing: -0.5px;
+        .search-box {
+            background: var(--crust); border: 1px solid var(--surface0);
+            border-radius: 12px; padding: 12px 18px; margin-bottom: 1rem;
+            display: flex; transition: 0.3s;
         }
-
-        p {
-            color: var(--subtext0);
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        /* Input Group */
-        .input-group {
-            display: flex;
-            background: var(--crust);
-            padding: 6px;
-            border-radius: 12px;
-            border: 1px solid var(--surface0);
-            transition: border-color 0.3s;
-        }
-
-        .input-group:focus-within {
-            border-color: var(--blue);
-        }
-
+        .search-box:focus-within { border-color: var(--mauve); }
         input {
-            background: transparent;
-            border: none;
-            padding: 12px 15px;
-            color: var(--text);
-            flex: 1;
-            outline: none;
-            font-size: 1rem;
+            background: transparent; border: none; color: var(--text);
+            width: 100%; outline: none; font-size: 1rem;
         }
 
-        button {
-            background-color: var(--blue);
-            color: var(--crust);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: opacity 0.2s;
+        #availability-msg {
+            margin-bottom: 1.5rem; padding: 12px; border-radius: 10px;
+            font-size: 0.9rem; display: none; animation: fadeIn 0.3s ease;
+        }
+        .available { background: rgba(166, 227, 161, 0.1); border: 1px solid var(--green); color: var(--green); }
+        .taken { background: rgba(243, 139, 168, 0.1); border: 1px solid var(--red); color: var(--red); }
+        .reserved { background: rgba(250, 179, 135, 0.1); border: 1px solid var(--peach); color: var(--peach); }
+
+        #results { max-height: 180px; overflow-y: auto; margin-bottom: 1.5rem; text-align: left; }
+        .domain-item {
+            background: var(--surface0); padding: 10px 15px; border-radius: 10px;
+            margin-bottom: 8px; display: flex; justify-content: space-between;
+            font-size: 0.85rem; border: 1px solid transparent;
+        }
+        .domain-name { color: var(--blue); font-family: monospace; }
+        .owner-tag { color: var(--mauve); }
+
+        .btn {
+            display: block; width: 100%; padding: 14px; border-radius: 12px;
+            text-decoration: none; font-weight: 700; margin-bottom: 10px; transition: 0.2s;
+        }
+        .btn-primary { background: var(--mauve); color: var(--crust); }
+        .btn-primary:hover { transform: scale(1.01); }
+
+        .stats-footer {
+            margin-top: 1.5rem; font-size: 0.7rem; color: var(--subtext0);
+            border-top: 1px solid var(--surface0); padding-top: 1rem;
+            line-height: 1.6;
         }
 
-        button:hover {
-            opacity: 0.9;
-        }
-
-        /* Small link footer */
-        .links {
-            margin-top: 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .links a {
-            color: var(--overlay2);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.2s;
-        }
-
-        .links a:hover {
-            color: var(--peach);
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 480px) {
-            .input-group { flex-direction: column; background: transparent; border: none; padding: 0; }
-            input { background: var(--crust); border-radius: 12px; margin-bottom: 10px; border: 1px solid var(--surface0); }
-            button { width: 100%; padding: 15px; }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <span class="status-badge">Under Construction</span>
-        <h1>Brewing Something New</h1>
-        <p>Our digital workspace is currently under maintenance. We're adding some fresh flavor to the experience.</p>
-        
+    <div class="container">
+        <h1>2929 Domains</h1>
+        <p class="tagline">Free subdomains for everyone.</p>
 
-        <div class="links">
-            <a href="https://github.com/2929-domains">Github</a>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search or check availability...">
+        </div>
+
+        <div id="availability-msg"></div>
+        <div id="results"></div>
+
+        <a href="https://github.com/2929-domains/registry" class="btn btn-primary">Register on GitHub</a>
         
-        
+        <div class="stats-footer">
+            <div id="registryStatus">Syncing registry...</div>
+            <div id="lastUpdated"></div>
         </div>
     </div>
 
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const resultsContainer = document.getElementById('results');
+        const availabilityMsg = document.getElementById('availability-msg');
+        const statusSpan = document.getElementById('registryStatus');
+        const updateSpan = document.getElementById('lastUpdated');
+        
+        let domains = [];
+        let reservedRules = [];
+        let blockedRules = [];
+        const baseDomain = "029290.xyz";
+
+        // Convert txt wildcard rules to Regex
+        function parseRules(text) {
+            return text.split('\n')
+                .map(line => line.trim())
+                .filter(line => line && !line.startsWith('#'))
+                .map(rule => new RegExp('^' + rule.replace(/\*/g, '.*') + '$', 'i'));
+        }
+
+        async function init() {
+            try {
+                const [regRes, resRes, blkRes] = await Promise.all([
+                    fetch('https://raw.githubusercontent.com/2929-domains/registry/refs/heads/main/master/build.json'),
+                    fetch('https://raw.githubusercontent.com/2929-domains/registry/refs/heads/main/reserved.txt'),
+                    fetch('https://raw.githubusercontent.com/2929-domains/registry/refs/heads/main/blocked.txt')
+                ]);
+
+                const regData = await regRes.json();
+                domains = regData.domains;
+                reservedRules = parseRules(await resRes.text());
+                blockedRules = parseRules(await blkRes.text());
+
+                statusSpan.innerText = `Active Domains: ${domains.length}`;
+                const date = new Date(regData.generatedAt);
+                updateSpan.innerText = `Last Updated: ${date.toLocaleString()}`;
+                
+                render('');
+            } catch (e) {
+                statusSpan.innerText = "Registry Sync Error";
+            }
+        }
+
+        function checkAvailability(input) {
+            if (!input) return null;
+
+            // Normalize input
+            let cleanInput = input.toLowerCase().replace(`.${baseDomain}`, '');
+            const parts = cleanInput.split('.');
+            const rootSub = parts[parts.length - 1]; // The part directly before 029290.xyz
+
+            // 1. Check Blocked (Every level)
+            for (let part of parts) {
+                if (blockedRules.some(rule => rule.test(part))) {
+                    return { status: 'taken', msg: `🚫 "${part}" is globally blocked.` };
+                }
+            }
+
+            // 2. Check Reserved (Root level only)
+            if (reservedRules.some(rule => rule.test(rootSub))) {
+                // Check if it's deeper than root (e.g., mail.admin.029290.xyz is okay if admin is reserved)
+                if (parts.length === 1) {
+                    return { status: 'reserved', msg: `⚠️ "${rootSub}" is reserved for system use.` };
+                }
+            }
+
+            // 3. Check if Taken
+            const fullFQDN = cleanInput + "." + baseDomain;
+            if (domains.some(d => d.fqdn.toLowerCase() === fullFQDN)) {
+                return { status: 'taken', msg: `❌ ${fullFQDN} is already registered.` };
+            }
+
+            return { status: 'available', msg: `✨ ${fullFQDN} is available!` };
+        }
+
+        function render(query) {
+            resultsContainer.innerHTML = '';
+            availabilityMsg.style.display = 'none';
+
+            if (!query) return;
+
+            // Availability Logic
+            const result = checkAvailability(query);
+            if (result) {
+                availabilityMsg.style.display = 'block';
+                availabilityMsg.className = result.status;
+                availabilityMsg.innerHTML = result.msg;
+            }
+
+            // Search Filter
+            const filtered = domains.filter(d => 
+                d.fqdn.toLowerCase().includes(query.toLowerCase()) || 
+                d.owner.toLowerCase().includes(query.toLowerCase())
+            );
+
+            filtered.forEach(d => {
+                const div = document.createElement('div');
+                div.className = 'domain-item';
+                div.innerHTML = `<span class="domain-name">${d.fqdn}</span><span class="owner-tag">@${d.owner}</span>`;
+                resultsContainer.appendChild(div);
+            });
+        }
+
+        searchInput.addEventListener('input', e => render(e.target.value.trim()));
+        init();
+    </script>
 </body>
 </html>
